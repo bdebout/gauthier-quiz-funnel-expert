@@ -1,9 +1,9 @@
 ---
 name: quiz-funnel-expert
-description: Expert end-to-end pour concevoir, auditer et coder des quiz funnels haute-conversion (mobile apps + SaaS web) couplés à des paywalls optimisés. Couvre la stratégie (croyances → questions → personnalisation → paywall), le copywriting des questions et résultats, l'intégration paywall (hard/soft, trial mechanics, RevenueCat/Superwall/Adapty patterns), les benchmarks 2026 (RevenueCat 115k apps, Adapty 16k apps), 30+ teardowns (Cal AI, Noom, Duolingo, Blinkist, Flo, Opal, Stoic, Calm, Headspace, MyFitnessPal, Linear, Notion, Anthropic, Cursor, Superhuman), le A/B test playbook par win-rate, l'instrumentation analytics et la stack technique (Next.js + Zustand + Stripe/RevenueCat/Superwall). Use when the user asks for "quiz funnel", "onboarding quiz", "tunnel de quiz", "quiz d'audit", "quiz personnalisation", "questionnaire de conversion", "paywall", "tunnel d'abonnement", "subscription funnel", "trial conversion", "freemium vs hard paywall", "Noom-style funnel", "web-to-app funnel", "personalized paywall", "quiz to paywall handoff", "augmenter mon trial-to-paid", "concevoir un onboarding mobile", "pricing page SaaS", "review trial mechanics", or names a benchmark app (Cal AI, Noom, BetterMe, Flo, Blinkist, Calm, Headspace, Duolingo, Strava, MyFitnessPal, Linear, Notion, Anthropic, Cursor, Superhuman, Vercel, Stripe, Raycast).
+description: Expert end-to-end pour concevoir, auditer et coder des quiz funnels haute-conversion (mobile apps + SaaS web) couplés à des paywalls optimisés. Couvre la stratégie (croyances → questions → personnalisation → paywall), le copywriting des questions et résultats, l'intégration paywall (hard/soft, trial mechanics, RevenueCat/Superwall/Adapty patterns), les benchmarks 2026 (RevenueCat 115k apps, Adapty 16k apps), 30+ teardowns (Cal AI, Noom, Duolingo, Blinkist, Flo, Opal, Stoic, Calm, Headspace, MyFitnessPal, Linear, Notion, Anthropic, Cursor, Superhuman), le A/B test playbook par win-rate, l'instrumentation analytics, la stack technique (Next.js + Zustand + Stripe/RevenueCat/Superwall) ET un sous-skill "Dashboard Réponse" pour générer un back-office admin complet (KPI, funnel par étape, drop-off, distribution réponses, détail session, export CSV) schema-agnostic et production-ready. Use when the user asks for "quiz funnel", "onboarding quiz", "tunnel de quiz", "quiz d'audit", "quiz personnalisation", "questionnaire de conversion", "paywall", "tunnel d'abonnement", "subscription funnel", "trial conversion", "freemium vs hard paywall", "Noom-style funnel", "web-to-app funnel", "personalized paywall", "quiz to paywall handoff", "augmenter mon trial-to-paid", "concevoir un onboarding mobile", "pricing page SaaS", "review trial mechanics", "dashboard réponse", "back-office quiz", "admin quiz funnel", "voir les réponses du quiz", "drop-off rate par étape", "completion rate quiz", "analytics interne quiz", or names a benchmark app (Cal AI, Noom, BetterMe, Flo, Blinkist, Calm, Headspace, Duolingo, Strava, MyFitnessPal, Linear, Notion, Anthropic, Cursor, Superhuman, Vercel, Stripe, Raycast).
 license: MIT
 metadata:
-  version: 1.0.0
+  version: 1.1.0
 ---
 
 # Quiz Funnel Expert
@@ -26,6 +26,7 @@ Trigger sur :
 - "Faire un teardown style Noom / Cal AI / Blinkist"
 - "Coder un quiz funnel Next.js"
 - "Pricing page SaaS (Linear, Notion, Anthropic style)"
+- **Sous-skill Dashboard Réponse** : "back-office quiz", "dashboard admin quiz", "voir les réponses", "voir les leads / sessions", "drop-off rate par étape", "completion rate", "distribution des réponses par question", "export CSV des leads", "page admin pour une session" → router vers [12-admin-dashboard.md](references/12-admin-dashboard.md).
 
 NE PAS trigger pour :
 - Onboarding produit B2B post-signup pure (utiliser `onboarding-cro`)
@@ -188,7 +189,25 @@ first_renewal
 
 Ne JAMAIS optimiser sur trial start sans regarder paid + refund + first_renewal + D7 retention. Voir [11-metrics-and-tracking.md](references/11-metrics-and-tracking.md).
 
-### Étape 9 — Output format
+### Étape 9 — Backend admin "Dashboard Réponse" (sous-skill)
+
+GA4/Mixpanel ne suffisent pas pour une équipe support/produit/sales : il faut **un back-office maison** qui montre, par session, les réponses brutes + l'état conversion + un funnel par étape avec drop-off + la distribution des réponses par option. C'est le sous-skill **Dashboard Réponse** ([12-admin-dashboard.md](references/12-admin-dashboard.md)).
+
+Trigger spécifique : "back-office", "dashboard admin", "voir les réponses", "drop-off rate par étape", "completion rate", "voir une session", "export CSV des leads".
+
+Le sous-skill livre, en tournant sur n'importe quel quiz funnel (schema-agnostic) :
+
+- **Data model Prisma** : `QuizSession` (identité + answers JSON + UTM + état conversion + resultData) + `QuizEvent` (event log granulaire pour le vrai funnel et le temps par étape).
+- **Config quiz unique** (`lib/quiz/config.ts`) — source de vérité partagée front/admin pour les labels des questions et options.
+- **35+ métriques calculées** : volume (24h/7j/30j), engagement (avg/median step reached, bounce, completion, top exit step), capture email, conversion (rate, time-to-pay, refund), funnel par étape avec drop-off absolu et %, distribution des réponses par option × lift conversion vs taux global, top sources UTM/pays/device, tendance journalière 14j, segments convertisseurs.
+- **4 pages admin** : overview KPI/funnel/trend, sessions list filtrable, session detail (toutes réponses + timeline events + raw JSON), distribution réponses par question.
+- **Export CSV** sécurisé (`/api/admin/export`).
+- **Auth fail-closed** via middleware Basic Auth (ou NextAuth/Clerk) — refuser 503 si secret absent.
+- **Checklist d'intégration en 8 étapes** pour plug le sous-skill sur un projet existant.
+
+À utiliser en complément de l'étape 8 (instrumentation events) : les events alimentent le dashboard, le dashboard alimente la décision growth.
+
+### Étape 10 — Output format
 
 Selon la requête, livrer :
 
@@ -237,6 +256,7 @@ Selon la requête, livrer :
 - **[09-ab-test-playbook.md](references/09-ab-test-playbook.md)** — Win rates, prio, hypothèses concrètes, design d'expérience, statistical significance pratique, anti-patterns
 - **[10-tech-stack.md](references/10-tech-stack.md)** — Stack Next.js + Zustand + Prisma + Stripe / RevenueCat / Superwall / Adapty / Purchasely, architecture quiz, persistance state, audit async, webhook flow
 - **[11-metrics-and-tracking.md](references/11-metrics-and-tracking.md)** — Event taxonomy, properties, funnel, anti-vanity-metrics, GA4 + Meta Pixel + Mixpanel + RevenueCat events
+- **[12-admin-dashboard.md](references/12-admin-dashboard.md)** — **Sous-skill "Dashboard Réponse"**. Backend admin complet schema-agnostic : data model Prisma (`QuizSession` + `QuizEvent`), config quiz centralisée, `lib/admin/stats.ts` exhaustif (35+ métriques : drop-off, completion, conversion, lift par option, cohortes, top sources, time-to-pay), 4 pages admin (overview / session detail / answers / list), endpoint export CSV, middleware Basic Auth fail-closed, checklist d'intégration en 8 étapes. Inspiré du back-office `audit.lazyrank.io/admin` mais générique pour tout quiz (santé, fitness, SaaS, audit, finance, dating, education).
 
 ---
 
