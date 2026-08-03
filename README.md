@@ -1,6 +1,27 @@
-# quiz-funnel-expert
+<div align="center">
 
-An expert Agent Skill for designing, auditing, and shipping high-conversion quiz funnels and paywalls — for mobile apps and SaaS web products.
+# Quiz Funnel Expert
+
+### Design and ship high-conversion quiz funnels and paywalls.
+
+<br>
+
+<a href="https://bizos.cc">
+<img src="https://img.shields.io/badge/BizOS-build%20autonomous%20companies-0A0A0A?style=for-the-badge&labelColor=0A0A0A" alt="BizOS — build autonomous companies">
+</a>
+
+<br><br>
+
+<a href="https://x.com/gauthierthiry"><img src="https://img.shields.io/badge/@gauthierthiry-0A0A0A?style=flat-square&logo=x&logoColor=white" alt="X"></a>
+<a href="https://youtube.com/@gquthier"><img src="https://img.shields.io/badge/@gquthier-FF0000?style=flat-square&logo=youtube&logoColor=white" alt="YouTube"></a>
+
+<br>
+
+<sub>An Agent Skill · 30+ teardowns · 2026 benchmarks · copy library EN/FR · Next.js stack</sub>
+
+</div>
+
+---
 
 Consolidates 2024-2026 benchmarks (RevenueCat 115k apps · $16B revenue, Adapty 16k apps · $3B revenue, Stormy 4500+ A/B tests, Superwall, Growth.Design), 30+ teardowns (Cal AI, Noom, Duolingo, Blinkist, Flo, Opal, Stoic, Calm, Headspace, MyFitnessPal, Strava, Linear, Notion, Anthropic, Cursor, Superhuman, Vercel, Stripe, Raycast), copy patterns, A/B test playbooks, and a Next.js + TypeScript implementation guide.
 
@@ -108,3 +129,24 @@ For major rewrites of strategy sections, please open an issue first to discuss.
 ## Disclaimer
 
 The benchmarks, conversion rates, and lifts cited come from the linked public sources. They are directional, not guaranteed. Test in your own funnel before basing major business decisions on aggregated medians from another dataset.
+
+---
+
+<div align="center">
+
+<br>
+
+### Building something that runs itself?
+
+**[bizos.cc](https://bizos.cc)** — build autonomous companies.
+
+<br>
+
+<a href="https://x.com/gauthierthiry"><img src="https://img.shields.io/badge/@gauthierthiry-0A0A0A?style=flat-square&logo=x&logoColor=white" alt="X"></a>
+<a href="https://youtube.com/@gquthier"><img src="https://img.shields.io/badge/@gquthier-FF0000?style=flat-square&logo=youtube&logoColor=white" alt="YouTube"></a>
+
+<br><br>
+
+<sub>Built by <a href="https://x.com/gauthierthiry">Gauthier Thiry</a></sub>
+
+</div>
