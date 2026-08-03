@@ -1,8 +1,12 @@
 <div align="center">
 
-# Quiz Funnel Expert
+<img src="https://img.shields.io/badge/MARKETING-CONVERSION-6E56CF?style=flat-square&labelColor=6E56CF&color=1A1A1A" alt="MARKETING · CONVERSION">
 
-### Design and ship high-conversion quiz funnels and paywalls.
+# Autonomous Quiz Funnels
+
+### Turn cold traffic into paying users with a funnel that qualifies before it sells.
+
+A quiz that makes people declare what they want, then a paywall<br>that answers them in their own words. The gap between the two<br>is where a 5x conversion difference lives.
 
 <br>
 
@@ -17,7 +21,7 @@
 
 <br>
 
-<sub>An Agent Skill · 30+ teardowns · 2026 benchmarks · copy library EN/FR · Next.js stack</sub>
+<sub>Agent Skill · 30+ teardowns (Cal AI, Noom, Duolingo, Blinkist, Linear, Notion, Anthropic) · 2026 benchmarks (RevenueCat, Adapty, Superwall) · 8 paywall patterns · copy library EN/FR · Next.js + TypeScript</sub>
 
 </div>
 
